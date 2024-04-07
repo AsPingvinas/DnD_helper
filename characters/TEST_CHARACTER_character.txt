@@ -1,0 +1,19 @@
+Name: TEST_CHARACTER
+Race: Dragonborn
+Class: Fighter
+Level: 1
+Ability Scores:
+Strength: 3
+Dexterity: 13
+Constitution: 3
+Intelligence: 9
+Wisdom: 14
+Charisma: 6
+Hit Points: 9
+Size: Medium
+Speed: Base walking speed is 30 feet
+Traits:
+Draconic ancestry
+Breath weapon
+Damage resistance
+
