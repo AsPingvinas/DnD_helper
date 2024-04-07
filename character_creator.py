@@ -54,16 +54,6 @@ class Character:
         hp = random.randint(1, hit_die)
         return hp + constitution
 
-    def display_stats(self):
-        print(f"Name: {self.name}")
-        print(f"Race: {self.race.value}")
-        print(f"Character Class: {self.character_class.value}")
-        print(f"Level: {self.level}")
-        print("Ability Scores:")
-        for ability, score in self.ability_scores.items():
-            print(f"{ability}: {score}")
-        print(f"Hit Points: {self.hit_points}")
-
 class RaceAttributes(Character):
     @staticmethod
     def Human(ability_scores):
@@ -178,7 +168,7 @@ class RaceAttributes(Character):
 
 def create_character_file():
     character_name = input("Enter your character's name: ")
-
+    print("Choose your character's race:")
     for idx, char_race in enumerate(Races, start=1):
         print(f"{idx}. {char_race.value}")
     race_choice = int(input("Enter the number corresponding to your choice: "))
