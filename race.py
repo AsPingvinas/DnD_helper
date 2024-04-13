@@ -1,4 +1,5 @@
 from enum import Enum
+from character import Character
 class Race(Enum):
     DRAGONBORN = "Dragonborn"
     DWARF = "Dwarf"
