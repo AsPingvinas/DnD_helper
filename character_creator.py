@@ -1,19 +1,9 @@
 import random
 import os
 from enum import Enum
+from race import Race
 
-class Races(Enum):
-    DRAGONBORN = "Dragonborn"
-    DWARF = "Dwarf"
-    ELF = "Elf"
-    GNOME = "Gnome"
-    HALF_ELF = "Half-Elf"
-    HALFLING = "Halfling"
-    HALF_ORC = "Half-Orc"
-    HUMAN = "Human"
-    TIEFLING = "Tiefling"
-
-class CharacterClasses(Enum):
+class CharacterClass(Enum):
     CLERIC = "Cleric"
     FIGHTER = "Fighter"
     ROGUE = "Rogue"
@@ -21,10 +11,10 @@ class CharacterClasses(Enum):
 
 class Character:
     hit_die_map = {
-        CharacterClasses.CLERIC: 8,
-        CharacterClasses.FIGHTER: 10,
-        CharacterClasses.ROGUE: 8,
-        CharacterClasses.WIZARD: 6,
+        CharacterClass.CLERIC: 8,
+        CharacterClass.FIGHTER: 10,
+        CharacterClass.ROGUE: 8,
+        CharacterClass.WIZARD: 6,
     }
 
     def __init__(self, name, race, character_class, size, speed):
@@ -54,7 +44,7 @@ class Character:
         hp = random.randint(1, hit_die)
         return hp + constitution
 
-class RaceAttributes(Character):
+class RaceAttribute(Character):
     @staticmethod
     def Human(ability_scores):
         speed = "Base walking speed is 30 feet"
@@ -169,32 +159,29 @@ class RaceAttributes(Character):
 def create_character_file():
     character_name = input("Enter your character's name: ")
     print("Choose your character's race:")
-    for idx, char_race in enumerate(Races, start=1):
+    for idx, char_race in enumerate(Race, start=1):
         print(f"{idx}. {char_race.value}")
     race_choice = int(input("Enter the number corresponding to your choice: "))
-    race = list(Races)[race_choice - 1]
+    race = list(Race)[race_choice - 1]
 
     print("Choose a character class:")
-    for idx, char_class in enumerate(CharacterClasses, start=1):
+    for idx, char_class in enumerate(CharacterClass, start=1):
         print(f"{idx}. {char_class.value}")
     class_choice = int(input("Enter the number corresponding to your choice: "))
-    character_class = list(CharacterClasses)[class_choice - 1]
+    character_class = list(CharacterClass)[class_choice - 1]
 
     ability_scores = Character.generate_ability_scores(None)
-    size = "NULL"
-    speed = "NULL"
-    traits = []
 
     race_attributes_map = {
-        Races.HUMAN: RaceAttributes.Human,
-        Races.ELF: RaceAttributes.Elf,
-        Races.DWARF: RaceAttributes.Dwarf,
-        Races.HALFLING: RaceAttributes.Halfling,
-        Races.DRAGONBORN: RaceAttributes.Dragonborn,
-        Races.GNOME: RaceAttributes.Gnome,
-        Races.HALF_ELF: RaceAttributes.Half_elf,
-        Races.HALF_ORC: RaceAttributes.Half_orc,
-        Races.TIEFLING: RaceAttributes.Tiefling
+        Race.HUMAN: RaceAttribute.Human,
+        Race.ELF: RaceAttribute.Elf,
+        Race.DWARF: RaceAttribute.Dwarf,
+        Race.HALFLING: RaceAttribute.Halfling,
+        Race.DRAGONBORN: RaceAttribute.Dragonborn,
+        Race.GNOME: RaceAttribute.Gnome,
+        Race.HALF_ELF: RaceAttribute.Half_elf,
+        Race.HALF_ORC: RaceAttribute.Half_orc,
+        Race.TIEFLING: RaceAttribute.Tiefling
     }
 
     ability_scores, size, speed, traits = race_attributes_map.get(race)(ability_scores)
@@ -225,5 +212,3 @@ def create_character_file():
     print(f"Character '{character_name}' saved to {file_name}")
 
 create_character_file()
-#TESTUOJAM
-
