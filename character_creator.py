@@ -1,7 +1,7 @@
 import os
 from race import Race, RaceAttribute
 from character import Character
-from character_class import CharacterClass
+from character_class import CharacterClass, CharacterClassAttribute
 
 def create_character_file():
     character_name = input("Enter your character's name: ")
@@ -33,6 +33,15 @@ def create_character_file():
 
     ability_scores, size, speed, traits = race_attributes_map.get(race)(ability_scores)
 
+    character_class_attributes_map = {
+        CharacterClass.CLERIC: CharacterClassAttribute.Cleric,
+        CharacterClass.FIGHTER: CharacterClassAttribute.Fighter,
+        CharacterClass.ROGUE: CharacterClassAttribute.Rogue,
+        CharacterClass.WIZARD: CharacterClassAttribute.Wizard
+    }
+
+    class_attributes = character_class_attributes_map.get(character_class)()
+
     character = Character(character_name, race, character_class, size, speed)
 
     character_info = f"Name: {character.name}\n"
@@ -45,9 +54,11 @@ def create_character_file():
     character_info += f"Hit Points: {character.hit_points}\n"
     character_info += f"Size: {character.size}\n"
     character_info += f"Speed: {character.speed}\n"
-    character_info += "Traits:\n"
-    for trait in traits:
-        character_info += f"{trait}\n"
+    character_info += "Class Attributes:\n"
+    character_info += f"Armor: {class_attributes.armor}\n"
+    character_info += f"Weapons: {', '.join(class_attributes.weapons)}\n"
+    character_info += f"Saving Throws: {', '.join(class_attributes.saving_throws)}\n"
+    character_info += f"Equipment: {', '.join(class_attributes.equipment)}\n"
 
     folder_path = "characters"
     if not os.path.exists(folder_path):
