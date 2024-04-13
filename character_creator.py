@@ -1,4 +1,3 @@
-
 import os
 from race import Race, RaceAttribute
 from character import Character
@@ -59,4 +58,16 @@ def create_character_file():
         file.write(character_info)
     print(f"Character '{character_name}' saved to {file_name}")
 
-create_character_file()
+while True:
+    print("What would you like to do?")
+    print("1. Make character")
+    print("2. Exit")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        create_character_file()
+    elif choice == "2":
+        print("Exiting program.")
+        break
+    else:
+        print("Invalid choice. Please enter '1' to make a character or '2' to exit.")
