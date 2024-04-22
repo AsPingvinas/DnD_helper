@@ -1,4 +1,5 @@
 import os
+import json
 from race import Race, RaceAttribute
 from character import Character
 from character_class import CharacterClass, CharacterClassAttribute
@@ -44,41 +45,30 @@ def create_character_file():
 
     character = Character(character_name, race, character_class, size, speed)
 
-    character_info = f"Name: {character.name}\n"
-    character_info += f"Race: {character.race.value}\n"
-    character_info += f"Class: {character.character_class.value}\n"
-    character_info += f"Level: {character.level}\n"
-    character_info += "Ability Scores:\n"
-    for ability, score in ability_scores.items():
-        character_info += f"{ability}: {score}\n"
-    character_info += f"Hit Points: {character.hit_points}\n"
-    character_info += f"Size: {character.size}\n"
-    character_info += f"Speed: {character.speed}\n"
-    character_info += "Class Attributes:\n"
-    character_info += f"Armor: {class_attributes.armor}\n"
-    character_info += f"Weapons: {', '.join(class_attributes.weapons)}\n"
-    character_info += f"Saving Throws: {', '.join(class_attributes.saving_throws)}\n"
-    character_info += f"Equipment: {', '.join(class_attributes.equipment)}\n"
+    character_info = {
+        "Name": character.name,
+        "Race": character.race.value,
+        "Class": character.character_class.value,
+        "Level": character.level,
+        "Ability Scores": ability_scores,
+        "Hit Points": character.hit_points,
+        "Size": character.size,
+        "Speed": character.speed,
+        "Class Attributes": {
+            "Armor": class_attributes.armor,
+            "Weapons": class_attributes.weapons,
+            "Saving Throws": class_attributes.saving_throws,
+            "Equipment": class_attributes.equipment
+        }
+    }
 
     folder_path = "characters"
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-    file_name = os.path.join(folder_path, f"{character_name}_character.txt")
+    file_name = os.path.join(folder_path, f"{character_name}_character.json")
     with open(file_name, "w") as file:
-        file.write(character_info)
+        json.dump(character_info, file, indent=4)
     print(f"Character '{character_name}' saved to {file_name}")
 
-while True:
-    print("What would you like to do?")
-    print("1. Make character")
-    print("2. Exit")
-    choice = input("Enter your choice: ")
-
-    if choice == "1":
-        create_character_file()
-    elif choice == "2":
-        print("Exiting program.")
-        break
-    else:
-        print("Invalid choice. Please enter '1' to make a character or '2' to exit.")
+create_character_file()
