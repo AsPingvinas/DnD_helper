@@ -1,7 +1,17 @@
 import os
 import json
+from character import Character
 
 class CharacterEditor:
+    ability_mapping = {
+        "STR": "Strength",
+        "DEX": "Dexterity",
+        "CON": "Constitution",
+        "INT": "Intelligence",
+        "WIS": "Wisdom",
+        "CHA": "Charisma"
+    }
+
     def __init__(self, file_path):
         self.file_path = file_path
         self.character = self.load_character()
@@ -10,6 +20,20 @@ class CharacterEditor:
         with open(self.file_path, "r") as file:
             character_info = json.load(file)
         return character_info
+
+    def edit_ability_scores(self):
+        print("Current Ability Scores:", self.character["Ability Scores"])
+        for _ in range(2):
+            ability = input("Enter ability to increase (e.g., STR, DEX, CON, INT, WIS, CHA): ").upper()
+            full_ability = self.ability_mapping.get(ability)
+            if full_ability:
+                try:
+                    increase_by = int(input("Enter the amount to increase by: "))
+                    self.character["Ability Scores"][full_ability] += increase_by
+                except ValueError:
+                    print("Please enter a valid integer for the amount to increase by.")
+            else:
+                print("Invalid ability.")
 
     def edit_equipment(self):
         print("Current Equipment:", self.character["Class Attributes"]["Equipment"])
@@ -45,19 +69,45 @@ class CharacterEditor:
         else:
             print("Invalid action.")
 
-    def edit_level(self):
-        new_level = int(input("Enter new level: "))
-        self.character["Level"] = new_level
+    def level_up(self):
+        if self.character["Level"] < 20:
+            self.character["Level"] += 1
+            print("Level Up!")
+            print("You gained 2 points to allocate to ability scores.")
+            self.allocate_ability_scores()
+        else:
+            print("You are already at the maximum level (20).")
 
-    def edit_ability_scores(self):
-        new_ability_scores = input("Enter new ability scores (in JSON format): ")
-        self.character["Ability Scores"] = json.loads(new_ability_scores)
+    def allocate_ability_scores(self):
+        valid_abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"]
+        print("Current Ability Scores:", self.character["Ability Scores"])
+
+        remaining_points = 2
+        for _ in range(2):
+            if remaining_points == 0:
+                break
+
+            ability = input("Enter ability to increase (e.g., STR, DEX, CON, INT, WIS, CHA): ").upper()
+            full_ability = self.ability_mapping.get(ability)
+            if full_ability:
+                try:
+                    current_score = self.character["Ability Scores"][full_ability]
+                    increase_by = min(int(input(f"Enter the amount to increase by (up to {20 - current_score}): ")),
+                                      remaining_points, 20 - current_score)
+                    if current_score + increase_by > 20:
+                        print(f"The {full_ability} score cannot exceed 20.")
+                        continue
+                    self.character["Ability Scores"][full_ability] += increase_by
+                    remaining_points -= increase_by
+                except ValueError:
+                    print("Please enter a valid integer for the amount to increase by.")
+            else:
+                print("Invalid ability.")
 
     def save_character(self):
         with open(self.file_path, "w") as file:
             json.dump(self.character, file, indent=4)
 
-# Example usage:
 def main():
     character_name = input("Enter the character's name: ")
     file_name = f"{character_name}_character.json"
@@ -67,11 +117,11 @@ def main():
         editor = CharacterEditor(file_path)
 
         while True:
-            print("\nChoose what to edit:")
-            print("1. Equipment")
-            print("2. Weapons")
-            print("3. Level")
-            print("4. Ability Scores")
+            print("\nChoose what to do:")
+            print("1. Edit Equipment")
+            print("2. Edit Weapons")
+            print("3. Level Up")
+            print("4. Edit Ability Scores")
             print("5. Save and Exit")
             choice = input("Enter your choice (1-5): ")
 
@@ -80,7 +130,7 @@ def main():
             elif choice == '2':
                 editor.edit_weapons()
             elif choice == '3':
-                editor.edit_level()
+                editor.level_up()
             elif choice == '4':
                 editor.edit_ability_scores()
             elif choice == '5':
