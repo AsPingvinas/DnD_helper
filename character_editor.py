@@ -21,19 +21,6 @@ class CharacterEditor:
             character_info = json.load(file)
         return character_info
 
-    def edit_ability_scores(self):
-        print("Current Ability Scores:", self.character["Ability Scores"])
-        for _ in range(2):
-            ability = input("Enter ability to increase (e.g., STR, DEX, CON, INT, WIS, CHA): ").upper()
-            full_ability = self.ability_mapping.get(ability)
-            if full_ability:
-                try:
-                    increase_by = int(input("Enter the amount to increase by: "))
-                    self.character["Ability Scores"][full_ability] += increase_by
-                except ValueError:
-                    print("Please enter a valid integer for the amount to increase by.")
-            else:
-                print("Invalid ability.")
 
     def edit_equipment(self):
         print("Current Equipment:", self.character["Class Attributes"]["Equipment"])
@@ -121,9 +108,8 @@ def main():
             print("1. Edit Equipment")
             print("2. Edit Weapons")
             print("3. Level Up")
-            print("4. Edit Ability Scores")
-            print("5. Save and Exit")
-            choice = input("Enter your choice (1-5): ")
+            print("4. Save and Exit")
+            choice = input("Enter your choice (1-4): ")
 
             if choice == '1':
                 editor.edit_equipment()
@@ -132,8 +118,6 @@ def main():
             elif choice == '3':
                 editor.level_up()
             elif choice == '4':
-                editor.edit_ability_scores()
-            elif choice == '5':
                 editor.save_character()
                 print(f"Character '{character_name}' updated successfully!")
                 break

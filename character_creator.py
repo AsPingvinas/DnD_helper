@@ -71,4 +71,3 @@ def create_character_file():
         json.dump(character_info, file, indent=4)
     print(f"Character '{character_name}' saved to {file_name}")
 
-create_character_file()
