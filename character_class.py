@@ -35,7 +35,6 @@ class CharacterClassAttribute:
 
         mace = "mace"
         crossbow = "crossbow"
-        bolts = 20
         pack_choice = input("Choose your pack (a) Priest's pack or (b) Explorer's pack: ").lower()
         if pack_choice == "a":
             pack = "Priest's pack"
@@ -54,22 +53,22 @@ class CharacterClassAttribute:
             armor=armor_class,
             weapons=[mace, crossbow],
             saving_throws=saving_throws,
-            equipment=[str(bolts), pack, shield, holy_symbol]  # Convert bolts to string
+            equipment=[pack, shield, holy_symbol]
         )
 
     @staticmethod
     def Fighter():
-        armor_choice = input("Choose your armor (a) chain mail or (b) leather armor, longbow and 20 arrows: ").lower()
+        armor_choice = input("Choose your armor (a) chain mail or (b) leather armor, longbow: ").lower()
         if armor_choice == "a":
             armor_class = "heavy"
             weapons = []
         elif armor_choice == "b":
             armor_class = "light"
-            weapons = ["longbow", "20 arrows"]
+            weapons = ["longbow"]
         else:
             print("Invalid choice. Defaulting to leather armor.")
             armor_class = "light"
-            weapons = ["longbow", "20 arrows"]
+            weapons = ["longbow"]
 
         weapon_choice = input(
             "Choose your weapon option (a) a martial weapon and a shield or (b) two martial weapons: ").lower()
@@ -82,14 +81,14 @@ class CharacterClassAttribute:
             weapons.extend(["martial weapon", "shield"])
 
         ranged_choice = input(
-            "Choose your ranged weapon option (a) a light crossbow and 20 bolts or (b) two handaxes: ").lower()
+            "Choose your ranged weapon option (a) a light crossbow or (b) two handaxes: ").lower()
         if ranged_choice == "a":
-            weapons.extend(["light crossbow", "20 bolts"])
+            weapons.extend(["light crossbow"])
         elif ranged_choice == "b":
             weapons.extend(["handaxe", "handaxe"])
         else:
             print("Invalid choice. Defaulting to option (a).")
-            weapons.extend(["light crossbow", "20 bolts"])
+            weapons.extend(["light crossbow"])
 
         pack_choice = input("Choose your pack option (a) a dungeoneer’s pack or (b) an explorer’s pack: ").lower()
         if pack_choice == "a":
@@ -117,9 +116,9 @@ class CharacterClassAttribute:
             weapon = "shortsword"
 
         ranged_choice = input(
-            "Choose your ranged weapon (a) shortbow and quiver of 20 arrows or (b) shortsword: ").lower()
+            "Choose your ranged weapon (a) shortbow or (b) shortsword: ").lower()
         if ranged_choice == "a":
-            ranged_weapon = ["shortbow", "quiver of 20 arrows"]
+            ranged_weapon = ["shortbow"]
         elif ranged_choice == "b":
             ranged_weapon = ["shortsword"]
         else:
