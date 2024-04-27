@@ -27,7 +27,7 @@ class TestCharacterCreation(unittest.TestCase):
 
 
 
-    @patch('builtins.input', side_effect=["2"])  # Simulate choosing to edit a character
+    @patch('builtins.input', side_effect=["2"])
     def test_character_editor_main(self, mock_input):
         pass
 
