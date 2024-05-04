@@ -54,6 +54,40 @@ class CharacterClassAttribute:
 
 ```
 
+### Polymorphism
+
+<p>I had an oopurtunity to use polymorphism in the "character_class.py" file like this: </p>
+
+```python
+class CharacterClassAttribute:
+    # Method definitions...
+    
+class Cleric(CharacterClassAttribute):
+    @staticmethod
+    def Cleric():
+        # Method implementation...
+    
+class Fighter(CharacterClassAttribute):
+    @staticmethod
+    def Fighter():
+        # Method implementation...
+```
+
+<p>However I didn't use inheritance becasuse while building a character, there are multiple choices on what items a character class will have. If I were to use poymorphism, there would have been too many diffrent classes and methods which would have been difficult to keep track of. But I did use polymorphism with character races</p>
+
+```python
+class RaceAttribute(Character):
+    @staticmethod
+    def Human(ability_scores):
+        # Method implementation...
+    
+    @staticmethod
+    def Elf(ability_scores):
+        # Method implementation...
+```
+
+<p>Charcter races are diffrent than character classes, because races have defined stats and characteristics that are following the rules and are always the same. There are no choices with character races. So polymorphism here was very convienient and simple.</p>
+
 ### Design patterns
 
 #### DP1
