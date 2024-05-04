@@ -1,40 +1,32 @@
-# DnD_helper
-
-
 ## Introduction
 
-### What is the application
+### What is the Application?
 
-<p>This is my coursework project for university. I had to follow the man 4 OOP pillars and had to use 2 diffrent design patters. Of course the results will be covered and analysed with diffrent levels of succssess.</p>
+<p>This is my coursework project for university. I had to follow the main 4 OOP pillars and had to use 2 different design patterns. Of course, the results will be covered and analyzed with different levels of success.</p>
 
-<p>"Dungeon's and dragons" is a role playing game where players use their imagination to create character's and defeat medievel/futuristic and fantasy themed campaigns.
-So the goal of my coursework was to make a simplified "Dungeon's and dragon's" character sheet creator, which can also edit the inventory, level up and edit stats of character's.</p>
+<p>"Dungeons and Dragons" is a role-playing game where players use their imagination to create characters and defeat medieval/futuristic and fantasy-themed campaigns. So, the goal of my coursework was to make a simplified "Dungeons and Dragons" character sheet creator, which can also edit the inventory, level up, and edit stats of characters.</p>
 
-<p>I tried to follow the official rulebook as best as possible while at the same not overcomplicating the program. This program is most useful to begginer's of the game, because most of the information is very nieche and not needed for first time player's.
-The game has a variety of character races to choose from and all races have specific abbilities that help them in the game. I'll use the "Dragonborn" race as an example, in the official rulebook their are about 8 diffrent variations of the "Dragornborn" and for new players
-these varietys are very confusing and would overwhelm new players. So I have chosen to keep the key features of a race to keep the game begginer friendly while also still keeping ther characters competitive.</p>
+<p>I tried to follow the official rulebook as best as possible while not overcomplicating the program. This program is most useful to beginners of the game because most of the information is very niche and not needed for first-time players. The game has a variety of character races to choose from, and all races have specific abilities that help them in the game. I'll use the "Dragonborn" race as an example; in the official rulebook, there are about 8 different variations of the "Dragonborn," and for new players, these varieties are very confusing and would overwhelm them. So, I have chosen to keep the key features of a race to keep the game beginner-friendly while also keeping the characters competitive.</p>
 
-### How to run the program
+### How to Run the Program
 
-<p>To run the program we open the "main.py" file using a program that is able to run pythn code. Some examples are "Microsoft visual code" and "PyCharm"</p>
+To run the program, we open the "main.py" file using a program that is able to run Python code. Some examples are "Microsoft Visual Studio Code" and "PyCharm".
 
-### How to use the program
+### How to Use the Program
 
-<p>The program will prompt us to either create a character or to edit a chasracter. Assuming it's the first time we are the program, we choose the create a new character. The program will prompt us to choose a name, race,
-class and items that come with the specif class we have chosen.</p>
+<p>The program will prompt us to either create a character or to edit a character. Assuming it's the first time we are using the program, we choose to create a new character. The program will prompt us to choose a name, race, class, and items that come with the specific class we have chosen.</p>
 
-<p>Then we can choose to edit a character that we have just created. There are options to add/remove equipment/weapons in our inventory as well as level up. When leveling up, we a choice to put 2 skill points into 1 stat or 1 skill point into 2 diffrent stats.
-There is also an option to display everything about our character.</p>
+<p>Then we can choose to edit a character that we have just created. There are options to add/remove equipment/weapons in our inventory as well as level up. When leveling up, we have a choice to put 2 skill points into 1 stat or 1 skill point into 2 different stats. There is also an option to display everything about our character.</p>
 
 ## Body/Analysis
 
-### The main OOP pillars
+### The Main OOP Pillars
 
 #### Encapsulation/Abstraction
 
-<p>Encapsulation is a principle that seeks to hide the implementation details of objects from the outside world. It states that all important information is contained within the object; only selected data is available externally. </p>
+Encapsulation is a principle that seeks to hide the implementation details of objects from the outside world. It states that all important information is contained within the object; only selected data is available externally.
 
-<p>In my case, the "Character" class best shows the case of encapsulation. Most of the information is contained in itself however the ability for child classes (RaceAttribute from race.py) to use the ability score attribute which is overriden. </p>
+In my case, the "Character" class best shows the case of encapsulation. Most of the information is contained in itself; however, the ability for child classes (RaceAttribute from race.py) to use the ability score attribute, which is overridden.
 
 ```python
 class Character:
@@ -76,7 +68,7 @@ class RaceAttribute(Character):
         return ability_scores, size, speed, traits
 ```
 
-``` python
+```python
 class CharacterClassAttribute:
     def __init__(self, armor, weapons, saving_throws, equipment):
         self.armor = armor  
@@ -86,64 +78,73 @@ class CharacterClassAttribute:
 
     # Other methods...
 ```
-<p>Abstraction refers to the concept of hiding the complex implementation details and showing only the necessary features of an object. In the provided code, abstraction is evident in various aspects
-<ul>
-    <li>The RaceAttribute and CharacterClassAttribute classes abstract away the specific implementations of racial and class attributes, respectively. They provide a clean interface for accessing and manipulating these attributes without exposing the underlying complexity.</li>
-    <li>The Character class abstracts away details about a character, providing a high-level representation of a character's properties (name, race, class, etc.) without exposing the internal implementation details.</li>
-</ul>
-</p>
+
+Abstraction refers to the concept of hiding the complex implementation details and showing only the necessary features of an object. In the provided code, abstraction is evident in various aspects:
+
+- The RaceAttribute and CharacterClassAttribute classes abstract away the specific implementations of racial and class attributes, respectively. They provide a clean interface for accessing and manipulating these attributes without exposing the underlying complexity.
+- The Character class abstracts away details about a character, providing a high-level representation of a character's properties (name, race, class, etc.) without exposing the internal implementation details.
 
 #### Inheritance/Polymorphism
 
-<p>Inheritance is </p>
+For my program and its purposes, inheritance and polymorphism had very similar uses/meanings. Inheritance helps developers create classes based on existing classes, and polymorphism is essentially an extension to inheritance that allows for subclasses to use methods of the same name but with different/similar functionality. In my coursework, I didn't find the need to use polymorphism because my program is one giant factory. My program builds characters with the use of different methods, and if different methods had the same name but different functionality, it would make for confusing, difficult, and unreadable code. For my purposes, simple inheritance helped fulfill my needs.
 
+For example, if I implemented a feature in my program that can calculate damage, then polymorphism would be useful since every character class has a different type of armor (same name, different usage).
 
-<p>For my program and it's porpuses, inheritance and polymorhpism had very similar uses/meanings. Inhiretance helps developers create classes based on existing classes, and polymorphism is essentially an extension to inheritance, that allows for sub-classes to use mehods of the same name, but with diffrent/similar functionality. In my coursework I didn't find the need to use polymorphism, because my program is one giant factory. My program builds characters witht the use of diffrent methods, and if diffrent methods had the same name, but diffrent functiionality, it would make for confusing, dificult and unreadable code. For my purposes simple inheritance helped fulfill my needs.  </p>
-
-<p>For example, if I implemented a featre to my program that can calculate damage, then polymorphism would be useful since every character class has a diffrent type of armour (same name,difrent usage). </p>
-
-<p>I had an oopurtunity to use inheritance in the "character_class.py" file like this: </p>
+I had an opportunity to use inheritance in the "character_class.py" file like this:
 
 ```python
 class CharacterClassAttribute:
     # Method definitions...
-    
+
 class Cleric(CharacterClassAttribute):
-    @staticmethod
-    def Cleric():
-        # Method implementation...
-    
+    # Method implementation...
+
 class Fighter(CharacterClassAttribute):
-    @staticmethod
-    def Fighter():
-        # Method implementation...
+    # Method implementation...
 ```
 
-<p>However I didn't use inheritance becasuse while , there are multiple choices on what items a character class will have. If I were to use inheritance, there would have been too many diffrent classes and methods which would have been difficult to keep track of. But I did use inheritamce with character races: </p>
+However, I didn't use inheritance because there are multiple choices on what items a character class will have. If I were to use inheritance, there would have been too many different classes and methods which would have been difficult to keep track of. But I did use inheritance with character races:
 
 ```python
 class RaceAttribute(Character):
     @staticmethod
     def Human(ability_scores):
-        # Method implementation...
-    
+        speed = "Base walking speed is 30 feet"
+        size = "Medium"
+        for ability in ability_scores:
+            ability_scores[ability] += 1
+        traits = {
+            "Extra language\n"
+        }
+        return ability_scores, size, speed, traits
+
     @staticmethod
     def Elf(ability_scores):
-        # Method implementation...
+        speed = "Base walking speed is 30 feet"
+        size = "Medium"
+        ability_scores['Dexterity'] += 2
+        traits = {
+            "Darkvision\n"
+            "Keen Senses\n"
+            "Fey Ancestry\n"
+            "Trance\n"
+        }
+        return ability_scores, size, speed, traits
+
 ```
 
-<p>Charcter races are diffrent than character classes, because races have defined stats and characteristics that are following the rules and are always the same. There are no choices with character races. So inheritace here was very convienient and simple. In the end the RaceAttribute class adds existing functionality to an already existing class (Character). </p>
+Character races are different than character classes because races have defined stats and characteristics that are following the rules and are always the same. There are no choices with character races. So inheritance here was very convenient and simple. In the end, the RaceAttribute class adds existing functionality to an already existing class (Character).
 
+### Design Patterns
 
-### Design patterns
+#### Factory Method Pattern
 
-#### Factory method pattern
+A factory method pattern provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created.
 
-<p>A factory method pattern provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.</p>
+My entire program is designed around this specific design pattern. I have different Race attributes/Class attributes which end up building a whole playable character.
 
-<p>My entire program is designed around this specific design patter. I have diffrent Race attributes/Class attributes which end up buiding a whole playable character. </p>
-
-```def create_character_file():
+```python
+def create_character_file():
     character_name = input("Enter your character's name: ")
     print("Choose your character's race:")
     for idx, char_race in enumerate(Race, start=1):
@@ -194,34 +195,31 @@ class RaceAttribute(Character):
     with open(file_name, "w") as file:
         json.dump(character_info, file, indent=4)
     print(f"Character '{character_name}' saved to {file_name}")
+
 ```
-<p>This function uses diffrent class methods assemble a character.</p>
-<p>We can say that this is smi</p>
 
 #### Singleton
 
-<p>This design pattern isn't explicity implimented, however the "main.py" file works as a main menu and as a single accssess point to all of the other files.</p>
-<p>By definition a singleton Lets you ensure that a class has only one instance, while providing a global access point to this instance. From my experiene singletons are useful in game dev for finding when objects collide with the player.Of course my singleton implementation in this project isn't the same with the definition, but is reminicent. </p>
-##Results
+This design pattern isn't explicitly implemented; however, the "main.py" file works as a main menu and as a single access point to all of the other files.
 
-##Results
+By definition, a singleton lets you ensure that a class has only one instance, while providing a global access point to this instance. From my experience, singletons are useful in game dev for finding when objects collide with the player. Of course, my singleton implementation in this project isn't the same with the definition, but is reminiscent.
 
-<ul>
-    <li>It was difficult to find a use for the "Polymorphism" pillar for my pogram</li>
-    <li>Missed oppurtunity to use inheritance with teh  CharacterClass </li>
-    <li>It was challenging to figure out the file reading/editing system</li>
-</ul>
+## Results
+
+- It was difficult to find a use for the "Polymorphism" pillar for my program.
+- Missed opportunity to use inheritance with the CharacterClass.
+- It was challenging to figure out the file reading/editing system.
 
 ## Conclusion
 
-<p>Overall, the program ended up not too bad, it works as intended and quite well. In the future I can add live healthbar, XP meter, UI and even more character classes. This was my very first bigger program that serves a purpose, I found using OOP priciples quite intersting. The whole concept of classes and their own methods is interesting. I learned alot making this program altho it isn't perfect and there is alot of room for inprovement.</p>
+Overall, the program ended up not too bad; it works as intended and quite well. In the future, I can add a live health bar, XP meter, UI, and even more character classes. This was my very first bigger program that serves a purpose; I found using OOP principles quite interesting. The whole concept of classes and their methods is interesting. I learned a lot making this program, although it isn't perfect and there is a lot of room for improvement.
 
 ### Notes
 
-<p>While making the program I made the mistake of not writing any unittests. In the end I ended up brute-forcing the test myself which made the project slower and more time consuming. After writing all of the final code, unittest were difficult to write. </p>
+While making the program, I made the mistake of not writing any unit tests. In the end, I ended up brute-forcing the test myself which made the project slower and more time-consuming. After writing all of the final code, unit tests are extremely difficult to write.
 
 ### References
 
-<p>https://career.softserveinc.com/en-us/stories/what-is-object-oriented-programming-oop-explaining-four-major-principles</p>
-<p>https://refactoring.guru/design-patterns/python</p>
+[Object-Oriented Programming Principles](https://career.softserveinc.com/en-us/stories/what-is-object-oriented-programming-oop-explaining-four-major-principles)
 
+[Design Patterns in Python](https://refactoring.guru/design-patterns/python)
