@@ -3,7 +3,8 @@
 
 ## Introduction
 
-### The goal
+### What is the application
+
 <p>"Dungeon's and dragons" is a role playing game where players use their imagination to create character's and defeat medievel/futuristic and fantasy themed campaigns.
 So the goal of my coursework was to make a simplified "Dungeon's and dragon's" character sheet creator, which can also edit the inventory, level up and edit stats of character's.</p>
 
@@ -11,17 +12,55 @@ So the goal of my coursework was to make a simplified "Dungeon's and dragon's" c
 The game has a variety of character races to choose from and all races have specific abbilities that help them in the game. I'll use the "Dragonborn" race as an example, in the official rulebook their are about 8 diffrent variations of the "Dragornborn" and for new players
 these varietys are very confusing and would overwhelm new players. So I have chosen to keep the key features of a race to keep the game begginer friendly while also still keeping ther characters competitive.</p>
 
+### How to run the program
+
+<p>To run the program we open the "main.py" file using a program that is able to run pythn code. Some examples are "Microsoft visual code" and "PyCharm"</p>
+
 ### How to use the program
 
-<p>We can find a "main.py" file which will the file we open. The program will prompt us to either create a character or to edit a chasracter. Assuming it's the first time we are the program, we choose the create a new character. The program will prompt us to choose a name, race,
+<p>The program will prompt us to either create a character or to edit a chasracter. Assuming it's the first time we are the program, we choose the create a new character. The program will prompt us to choose a name, race,
 class and items that come with the specif class we have chosen.</p>
 
 <p>Then we can choose to edit a character that we have just created. There are options to add/remove equipment/weapons in our inventory as well as level up. When leveling up, we a choice to put 2 skill points into 1 stat or 1 skill point into 2 diffrent stats.
 There is also an option to display everything about our character.</p>
 
-## Body/Analysis/Results
+## Body/Analysis
 
+### The main OOP pillars
 
+#### Encapsulation
+
+```python
+class Character:
+    def __init__(self, name, race, character_class, size, speed):
+        self.name = name  
+        self.race = race 
+        self.character_class = character_class  
+        self.level = 1  
+        self.ability_scores = self.generate_ability_scores() 
+        self.hit_points = self.generate_hit_points()  
+        self.size = size 
+        self.speed = speed 
+```
+``` python
+class CharacterClassAttribute:
+    def __init__(self, armor, weapons, saving_throws, equipment):
+        self.armor = armor  
+        self.weapons = weapons 
+        self.saving_throws = saving_throws 
+        self.equipment = equipment 
+
+    # Other methods...
+
+```
+
+### Design patterns
+
+#### DP1
+
+#### DP2
+
+##Results
 
 ## Conclusion
 
